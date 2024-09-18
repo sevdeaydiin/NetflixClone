@@ -40,16 +40,28 @@ class HomeViewController: UIViewController {
 
     }
     
+    private func resizeImage(image: UIImage, targetSize: CGSize) -> UIImage {
+        let renderer = UIGraphicsImageRenderer(size: targetSize)
+        let resizedImage = renderer.image { _ in
+            image.draw(in: CGRect(origin: .zero, size: targetSize))
+        }
+        return resizedImage
+    }
+    
     private func configureNavbar() {
-        var image = UIImage(named: "netflix")
-        image = image?.withRenderingMode(.alwaysOriginal)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .done, target: self, action: nil)
+        
+        if let image = UIImage(named: "netflix") {
+            let resizedImage = resizeImage(image: image, targetSize: CGSize(width: 35, height: 35))
+            let imageView = UIImageView(image: resizedImage)
+            imageView.contentMode = .scaleAspectFit
+            navigationItem.leftBarButtonItem = UIBarButtonItem(customView: imageView)
+        }
+
         navigationItem.rightBarButtonItems = [
             UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: self, action: nil),
             UIBarButtonItem(image: UIImage(systemName: "play.rectangle"), style: .done, target: self, action: nil)
         ]
         navigationController?.navigationBar.tintColor = .foreground
-    
     }
     
     override func viewDidLayoutSubviews() {
