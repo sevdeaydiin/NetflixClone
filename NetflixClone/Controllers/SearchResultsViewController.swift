@@ -1,13 +1,13 @@
 //
-//  DownloadViewController.swift
+//  SearchResultsViewController.swift
 //  NetflixClone
 //
-//  Created by Sevde Aydın on 14.09.2024.
+//  Created by Sevde Aydın on 19.09.2024.
 //
 
 import UIKit
 
-class DownloadViewController: UIViewController {
+class SearchResultsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
